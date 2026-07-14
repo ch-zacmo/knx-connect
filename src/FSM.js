@@ -151,7 +151,9 @@ module.exports = machina.Fsm.extend({
         ) {
           try {
             this.socket.close();
-          } catch (error) {}
+          } catch (error) {
+            // Ignore close errors while disconnecting.
+          }
           this.transition('uninitialized');
           this.emit('disconnected');
           this.log.debug(
@@ -232,7 +234,9 @@ module.exports = machina.Fsm.extend({
             );
             try {
               this.socket.close();
-            } catch (error) {}
+            } catch (error) {
+              // Ignore close errors while disconnecting.
+            }
             this.transition('uninitialized');
             this.emit('disconnected');
           }, 3000);
@@ -260,7 +264,9 @@ module.exports = machina.Fsm.extend({
           );
           try {
             this.socket.close();
-          } catch (error) {}
+          } catch (error) {
+            // Ignore close errors while disconnecting.
+          }
           this.transition('uninitialized');
           this.emit('disconnected');
         }
@@ -647,3 +653,4 @@ module.exports = machina.Fsm.extend({
     return candidateInterfaces;
   },
 });
+

@@ -8,7 +8,6 @@ const log = require('log-driver').logger;
 //
 // DPT10.*: time (3 bytes)
 //
-const util = require('util');
 const dowTimeRegexp = /((\d)\/)?(\d{1,2}):(\d{1,2}):(\d{1,2})/;
 
 // DPTFrame to parse a DPT10 frame.
@@ -18,9 +17,9 @@ exports.formatAPDU = (value) => {
   let dow, hour, minute, second;
   // day of week. NOTE: JS Sunday = 0
   switch (typeof value) {
-    case 'string':
+    case 'string': {
       // try to parse
-      match = dowTimeRegexp.exec(value);
+      const match = dowTimeRegexp.exec(value);
       if (match) {
         const currentDoW = ((new Date().getDay() - 7) % 7) + 7;
         dow = match[2] != undefined ? parseInt(match[2]) : currentDoW;
@@ -31,13 +30,16 @@ exports.formatAPDU = (value) => {
         log.warn('DPT10: invalid time format (%s)', value);
       }
       break;
+    }
     case 'object':
       if (value.constructor.name != 'Date') {
         log.warn('Must supply a Date or String for DPT10 time');
         break;
       }
+      // falls through
     case 'number':
       value = new Date(value);
+      // falls through
     default:
       dow = ((value.getDay() - 7) % 7) + 7;
       hour = value.getHours();
@@ -95,3 +97,4 @@ exports.subtypes = {
     desc: 'time of day',
   },
 };
+

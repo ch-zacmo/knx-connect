@@ -133,7 +133,8 @@ FSM.prototype.prepareDatagram = function(svcType) {
   switch (svcType) {
     case KnxConstants.SERVICE_TYPE.CONNECT_REQUEST:
       AddTunn(datagram);
-      AddCRI(datagram); // no break!
+      AddCRI(datagram);
+      // falls through
     case KnxConstants.SERVICE_TYPE.CONNECTIONSTATE_REQUEST:
     case KnxConstants.SERVICE_TYPE.DISCONNECT_REQUEST:
       this.AddConnState(datagram);
@@ -159,19 +160,10 @@ FSM.prototype.prepareDatagram = function(svcType) {
 send the datagram over the wire
 */
 FSM.prototype.send = function(datagram, callback) {
-  var cemitype; // TODO: set, but unused
   try {
     this.writer = KnxNetProtocol.createWriter();
-    switch (datagram.service_type) {
-      case KnxConstants.SERVICE_TYPE.ROUTING_INDICATION:
-      case KnxConstants.SERVICE_TYPE.TUNNELING_REQUEST:
-        // append the CEMI service type if this is a tunneling request...
-        cemitype = KnxConstants.keyText('MESSAGECODES', datagram.cemi.msgcode);
-        break;
-    }
     const packet = this.writer.KNXNetHeader(datagram);
     const buf = packet.buffer;
-    const svctype = KnxConstants.keyText('SERVICE_TYPE', datagram.service_type); // TODO: unused
     const descr = datagramDesc(datagram);
     KnxLog.get().trace('(%s): Sending %s ==> %j', this.compositeState(), descr, datagram);
     this.socket.send(
@@ -366,3 +358,4 @@ function Connection(options) {
 };
 
 module.exports = Connection;
+

@@ -113,7 +113,7 @@ dpts.populateAPDU = (value, apdu, dptid) => {
         'Value %j(%s) out of scalar range(%j) for %s',
         value,
         typeof value,
-        scalar,
+        [s_min, s_max],
         dpt.id
       );
     } else {
@@ -130,7 +130,7 @@ dpts.populateAPDU = (value, apdu, dptid) => {
       'Value %j(%s) out of bounds(%j) for %s.%s',
       value,
       typeof value,
-      range,
+      [r_min, r_max],
       dpt.id,
       dpt.subtypeid
     );
@@ -166,7 +166,7 @@ dpts.fromBuffer = (buf, dpt) => {
   if (buf.length > 6) {
     throw 'cannot handle unsigned integers more then 6 bytes in length';
   }
-  let value = 0;
+  let value;
   if (
     dpt.basetype.hasOwnProperty('signedness') &&
     dpt.basetype.signedness == 'signed'
@@ -201,3 +201,4 @@ const cloneDpt = (d) => {
 };
 
 module.exports = dpts;
+

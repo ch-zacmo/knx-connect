@@ -238,7 +238,7 @@ test('KNX protocol marshaller', function(t) {
   Object.keys(tests).forEach((key, idx) => {
     var testcase = tests[key];
     var buf = typeof testcase.hexbuf == 'string' ?
-        new Buffer(testcase.hexbuf.replace(/\s/g, ''), 'hex') : hexbuf;
+        new Buffer(testcase.hexbuf.replace(/\s/g, ''), 'hex') : testcase.hexbuf;
     console.log("\n=== %s", key);
     // marshal the test datagram
     var writer = knxnetprotocol.createWriter();
@@ -257,3 +257,4 @@ test('KNX protocol marshaller', function(t) {
   });
   t.end();
 });
+

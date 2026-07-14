@@ -35,7 +35,7 @@ if (process.env.hasOwnProperty('WIREDTEST')) {
     function setupDatapoints() {
       var ctrl_ga_arr = options.readstorm_control_ga_start.split('/');
       var stat_ga_arr = options.readstorm_status_ga_start.split('/');
-      for (i=0; i< options.readstorm_range; i++) {
+      for (var i=0; i< options.readstorm_range; i++) {
         var ctrl_ga = [ctrl_ga_arr[0], ctrl_ga_arr[1], i+parseInt(ctrl_ga_arr[2])].join('/');
         var stat_ga = [stat_ga_arr[0], stat_ga_arr[1], i+parseInt(stat_ga_arr[2])].join('/');
         setupDatapoint(ctrl_ga, stat_ga);
@@ -75,3 +75,4 @@ if (process.env.hasOwnProperty('WIREDTEST')) {
     process.exit(2);
   }, 1500);
 }
+

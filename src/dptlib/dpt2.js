@@ -111,7 +111,7 @@ exports.subtypes = {
   },
 
   // 2.010 start control
-  '001': {
+  '010': {
     use: 'FB',
     name: 'DPT_Start_Control',
     desc: 'start with priority',
@@ -119,7 +119,7 @@ exports.subtypes = {
   },
 
   // 2.011 state control
-  '001': {
+  '011': {
     use: 'FB',
     name: 'DPT_Switch_Control',
     desc: 'switch',
@@ -127,10 +127,11 @@ exports.subtypes = {
   },
 
   // 2.012 invert control
-  '001': {
+  '012': {
     use: 'FB',
     name: 'DPT_Switch_Control',
     desc: 'switch',
     enc: { 0: 'No control', 1: 'No control', 2: 'Off', 3: 'On' },
   },
 };
+

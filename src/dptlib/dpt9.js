@@ -9,7 +9,6 @@ const log = require('log-driver').logger;
 // DPT9.*: 2-byte floating point value
 //
 
-const util = require('util');
 // kudos to http://croquetweak.blogspot.gr/2014/08/deconstructing-floats-frexp-and-ldexp.html
 const ldexp = (mantissa, exponent) =>
   exponent > 1023 // avoid multiplying by infinity
@@ -41,6 +40,7 @@ exports.formatAPDU = (value) => {
   // find the minimum exponent that will upsize the normalized mantissa (0,5 to 1 range)
   // in order to fit in 11 bits ([-2048, 2047])
   let max_mantissa = 0;
+  let e;
   for (e = exponent; e >= -15; e--) {
     max_mantissa = ldexp(100 * mantissa, e);
     if (max_mantissa > -2048 && max_mantissa < 2047) break;
@@ -227,3 +227,4 @@ exports.subtypes = {
     range: [0, 670760],
   },
 };
+

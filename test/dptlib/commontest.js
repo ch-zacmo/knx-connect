@@ -19,7 +19,7 @@ function marshalTest(t, dptid, jsval, apdu) {
   DPTLib.populateAPDU(jsval, marshalled, dptid);
   // console.log('%j --> %j', apdu.constructor.name, marshalled.data)
   t.deepEqual(marshalled.data, apdu,
-    `${dptid}.populateAPDU(${jsval}:${typeof jsval}) should be marshalled as \"0x${apdu.toString('hex')}\", got: \"0x${marshalled.data.toString('hex')}\"`
+    `${dptid}.populateAPDU(${jsval}:${typeof jsval}) should be marshalled as "0x${apdu.toString('hex')}", got: "0x${marshalled.data.toString('hex')}"`
   );
   return marshalled.data;
 };
@@ -61,3 +61,4 @@ module.exports = {
     });
   }
 }
+

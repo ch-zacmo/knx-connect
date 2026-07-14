@@ -4,7 +4,6 @@
  */
 
 const log = require('log-driver').logger;
-const util = require('util');
 //
 // DPT11.*: date
 //
@@ -15,11 +14,13 @@ exports.formatAPDU = (value) => {
     case 'number':
       value = new Date(value);
       break;
-    case 'object':
+    case 'object': {
       // this expects the month property to be zero-based (January = 0, etc.)
       if (value instanceof Date) break;
       const { year, month, day } = value;
       value = new Date(parseInt(year), parseInt(month), parseInt(day));
+      break;
+    }
   }
   if (isNaN(value.getDate()))
     return log.error(
@@ -76,3 +77,4 @@ exports.subtypes = {
     desc: 'Date',
   },
 };
+
