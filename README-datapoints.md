@@ -1,27 +1,33 @@
 ## Datapoint Types
 
-|DPT   	  | Description       | Value type  	| Example  	| Notes |
-|---	    |---	                  |---	|---	|---	|
-|DPT1   	| 1-bit control  	      | Boolean/Numeric	|  true/"true"/1 false/"false"/0 | |
-|DPT2   	| 1-bit control w/prio  | Object  	| {priority: 0, data: 1}  	|   |
-|DPT3   	| 4-bit dimming/blinds  | Object  	| {decr_incr: 1, data: 0}  	|   data: 3-bit (0..7)|
-|DPT4   	| 8-bit character  	|   String	| "a"  	|   1st char must be ASCII	|
-|DPT5   	| 8-bit unsigned int  | Numeric | 127  	|  0..255 	|
-|DPT6   	| 8-bit signed int  	| Numeric | -12  	|  -128..127 	|
-|DPT7   	| 16-bit unsigned int  | Numeric  |   	|  0..65535 	|
-|DPT8   	| 16-bit signed integer | Numeric |   	|  -32768..32767 |
-|DPT9   	| 16-bit floating point | Numeric |   	|   	|
-|DPT10   	| 24-bit time + day of week 	|   Date	|  new Date() |   only the time part is used, see note |
-|DPT11   	| 24-bit date 	|   Date	|  new Date() |   only the date part is used, see note |
-|DPT12   	| 32-bit unsigned int | Numeric |   	|   	|
-|DPT13   	| 32-bit signed int   | Numeric |   	|   	|
-|DPT14   	| 32-bit floating point | Numeric |   	|  incomplete: subtypes |
-|DPT15   	| 32-bit access control |  |   	|   incomplete|
-|DPT16   	| ASCII string 	|  String |   	|   	|
-|DPT17   	| Scene number 	|   	|   	|  incomplete|
-|DPT18   	| Scene control 	|   	|   	|   incomplete|
-|DPT19   	| 8-byte Date and Time 	|  Date | new Date() |   	|
-|DPT20-255 | feel free to contribute! 	|   |  |   	|
+|DPT   	    | Description           | Value type  	  | Example  	| Notes |
+|---	      |---	                  |---	            |---	      |---	  |
+|DPT1   	  | 1-bit control  	      | Boolean/Numeric	| true/"true"/1 false/"false"/0 | |
+|DPT2   	  | 1-bit control w/prio  | Object  	      | {priority: 0, data: 1}  	|   |
+|DPT3   	  | 4-bit dimming/blinds  | Object  	      | {decr_incr: 1, data: 0}  	|   data: 3-bit (0..7)|
+|DPT4   	  | 8-bit character  	    | String	        | "a"  	    | 1st char must be ASCII	|
+|DPT5   	  | 8-bit unsigned int    | Numeric         | 127  	    | 0..255 	|
+|DPT6   	  | 8-bit signed int  	  | Numeric         | -12  	    | -128..127 	|
+|DPT7   	  | 16-bit unsigned int   | Numeric         |   	      | 0..65535 	|
+|DPT8   	  | 16-bit signed integer | Numeric         |   	      | -32768..32767 |
+|DPT9   	  | 16-bit floating point | Numeric         |   	      |   	  |
+|DPT10   	  | 24-bit time + day of week 	|   Date	  | new Date()| only the time part is used, see note |
+|DPT11   	  | 24-bit date 	        | Date	          | new Date()| only the date part is used, see note |
+|DPT12   	  | 32-bit unsigned int   | Numeric         |   	      |   	  |
+|DPT13   	  | 32-bit signed int     | Numeric         |   	      |   	  |
+|DPT14   	  | 32-bit floating point | Numeric         |   	      | incomplete: subtypes |
+|DPT15   	  | 32-bit access control |                 |   	      | incomplete|
+|DPT16   	  | ASCII string 	        | String          |   	      |   	  |
+|DPT17   	  | Scene number 	        |   	            |   	      | incomplete|
+|DPT18   	  | Scene control 	      |   	            |   	      | incomplete|
+|DPT19   	  | 8-byte Date and Time 	| Date            | new Date()|   	  |
+|DPT20      | 1-byte HVAC             | Numeric         | 4         |        |
+|DPT21      | 1-byte status           | Object          | {outofservice: 0, fault: 0, overridden: 0, inalarm: 0, alarmunack: 0} |        |
+|DPT232     | RGB color triplet       | Object          | {red: 255, green: 128, blue: 1} | 0..255 per channel |
+|DPT237     | 2-byte DALI diagnostics | Object          | {address: 1, addresstype: 1, readresponse: 0, lampfailure: 0, ballastfailure: 0, convertorerror: 0} |        |
+|DPT238     | 1-byte unsigned int     | Numeric         | 127       | 0..255 |
+|DPT251     | RGBW color array        | Object          | {red: 127, green: 255, blue: 204, white: 51, mask: 15} | 0..255 per channel, mask 0..15 |
+|DPT22-231, DPT233-236, DPT239-250, DPT252-255 | feel free to contribute! | | | |
 
 
 When you add new DPT's, please ensure that you add the corresponding unit test
