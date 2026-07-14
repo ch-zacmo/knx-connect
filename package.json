@@ -11,6 +11,7 @@
     "url": "https://github.com/ch-zacmo/knx.git"
   },
   "scripts": {
+    "lint": "eslint .",
     "test": "multi-tape test/*/test-*.js"
   },
   "license": "MIT",
@@ -96,7 +97,10 @@
     "machina": "^4.0.2"
   },
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.7.0",
     "multi-tape": "^1.17.1",
     "tape": "^4.17.0"
   }
 }
+
