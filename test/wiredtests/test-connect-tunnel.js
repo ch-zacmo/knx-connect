@@ -26,6 +26,8 @@ if (process.env.hasOwnProperty('WIREDTEST')) {
       // set up your KNX IP router's IP address (not multicast!)
       // for getting into tunnelling mode
       ipAddr: options.ipAddr,
+      ipPort: options.ipPort,
+      loglevel: options.loglevel,
       physAddr: options.physAddr,
       debug: true,
       handlers: {
@@ -55,3 +57,4 @@ if (process.env.hasOwnProperty('WIREDTEST')) {
     process.exit(2);
   }, 1000);
 }
+
