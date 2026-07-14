@@ -1,8 +1,6 @@
 ## KNXnet/IP for Node.JS
 
-[![CI](https://github.com/ekarak/knx/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/ekarak/knx/actions/workflows/ci.yml)
-
-**New:** [Join the Gitter.im chatroom!](https://gitter.im/knx-js/Lobby)
+[![CI](https://github.com/ch-zacmo/knx/actions/workflows/ci.yml/badge.svg)](https://github.com/ch-zacmo/knx/actions/workflows/ci.yml)
 
 A feature-complete [KNXnet/IP protocol stack](https://www.knx.org/en-us/knx/technology/developing/devices/ip-devices/index.php) in pure Javascript, capable of talking multicast (routing) and unicast (tunneling). Adding KNX to your Node.JS applications is now finally easy as pie.
 
