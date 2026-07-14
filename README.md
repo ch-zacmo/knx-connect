@@ -52,3 +52,21 @@ Ahhh, KNX telegrams, what a joy:
 - [List of supported events](../master/README-events.md)
 - [eibd/knxd compatibility](../master/README-knxd.md)
 - [On resilience](../master/README-resilience.md)
+
+
+## Roadmap
+
+- Fix linting issues and add linting to CI
+- Remove tape and multi-tape and replace with native Node.js test runner
+- Add JSDoc documentation and generate API docs
+- Add support for KNX secure communication (KNXnet/IP Secure)
+- Remove dependency / keep them to a minimum
+
+Feel free to contribute, fork and submit pull requests. If you have any questions, please open an issue on GitHub.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+It is a fork of the original [knx](https://github.com/ekarak/knx) protocol stack, which is also licensed under the MIT License.
+
+Thanks to [@ekarak](https://github.com/ekarak) for his work.
