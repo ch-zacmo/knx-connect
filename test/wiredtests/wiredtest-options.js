@@ -20,8 +20,18 @@ module.exports = {
   // a DPT 9 control and its status GA
   dpt9_timer_control_ga: '4/1/4',
   dpt9_timer_status_ga: '4/1/3',
+
+  // a DPT 232 control and its status GA
+  dpt232_rgb_control_ga: '5/0/30',
+  dpt232_rgb_status_ga: '5/0/31',
+
+  // a DPT 251 control and its status GA
+  dpt251_rgbw_control_ga: '5/0/40',
+  dpt251_rgbw_status_ga: '5/0/41',
+
   // a DPT1 group address that should also be able to respond to a GroupValue_Read request
   wired_test_control_ga: '5/0/0',
+  
   // read storm test: read back statuses from an actuator with multiple relays
   readstorm_control_ga_start: '1/1/0',
   readstorm_status_ga_start: '1/1/100',
