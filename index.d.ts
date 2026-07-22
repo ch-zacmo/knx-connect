@@ -63,7 +63,7 @@ interface DatapointEvent {
   on(event: string, listener: (event: string, value: any) => void): this;
 }
 
-declare module "knx" {
+declare module "knx-connect" {
   type MachinaEventsCallback = (...args: any[]) => void;
 
   interface MachinaEventsReturn {

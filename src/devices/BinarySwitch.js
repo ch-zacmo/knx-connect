@@ -1,5 +1,5 @@
 /**
- * knx.js - a pure Javascript library for KNX
+ * knx-connect - a pure JavaScript library for KNX
  * (C) 2016 Elias Karakoulakis
  */
 
