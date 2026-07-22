@@ -10,7 +10,7 @@
   "author": "Mattias Holmlund <mattias@holmlund.se>",
   "license": "MIT",
   "dependencies": {
-    "knx": "../",
+    "knx-connect": "../",
     "tslint": "^5.1.0",
     "typescript": "^2.2.2"
   }
