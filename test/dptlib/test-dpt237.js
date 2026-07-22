@@ -1,5 +1,5 @@
 /**
-* knx.js - a KNX protocol stack in pure Javascript
+* knx-connect - a KNX protocol stack in pure JavaScript
 * (C) 2016-2018 Elias Karakoulakis
 */
 const commontest = require('./commontest')

@@ -1,14 +1,18 @@
 {
-  "name": "knx",
-  "description": "KNXnet/IP protocol implementation for Node(>=22.x)",
-  "version": "2.6.0",
+  "name": "knx-connect",
+  "description": "Community-maintained KNXnet/IP connectivity for modern Node.js",
+  "version": "3.0.0",
   "engines": {
     "node": ">=22"
   },
   "private": false,
   "repository": {
     "type": "git",
-    "url": "https://github.com/ch-zacmo/knx.git"
+    "url": "https://github.com/ch-zacmo/knx-connect.git"
+  },
+  "homepage": "https://github.com/ch-zacmo/knx-connect#readme",
+  "bugs": {
+    "url": "https://github.com/ch-zacmo/knx-connect/issues"
   },
   "scripts": {
     "lint": "eslint .",
@@ -85,8 +89,14 @@
   ],
   "keywords": [
     "knx",
+    "knx-connect",
+    "knxnet",
+    "knxnet/ip",
     "smart home",
-    "building automation"
+    "home automation",
+    "building automation",
+    "routing",
+    "tunneling"
   ],
   "dependencies": {
     "@types/node": "^26.1.1",

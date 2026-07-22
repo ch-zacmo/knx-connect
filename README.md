@@ -1,72 +1,130 @@
-## KNXnet/IP for Node.JS
+# knx-connect
 
-[![CI](https://github.com/ch-zacmo/knx/actions/workflows/ci.yml/badge.svg)](https://github.com/ch-zacmo/knx/actions/workflows/ci.yml)
+[![npm version](https://img.shields.io/npm/v/knx-connect.svg)](https://www.npmjs.com/package/knx-connect)
+[![CI](https://github.com/ch-zacmo/knx-connect/actions/workflows/ci.yml/badge.svg)](https://github.com/ch-zacmo/knx-connect/actions/workflows/ci.yml)
 
-A feature-complete [KNXnet/IP protocol stack](https://www.knx.org/en-us/knx/technology/developing/devices/ip-devices/index.php) in pure Javascript, capable of talking multicast (routing) and unicast (tunneling). Adding KNX to your Node.JS applications is now finally easy as pie.
+Community-maintained KNXnet/IP connectivity for modern Node.js.
 
-* Wide DPT (datapoint type) support (DPT1 - DPT20 supported)
-* Extensible Device support (binary lights, dimmers, ...)
-* You won't need to install a specialised eibd daemon with its arcane dependencies  and most importantly,
-* If you got an IP router and a network that supports IP multicast, you can start talking to KNX within seconds!
+`knx-connect` is a pure JavaScript KNXnet/IP stack with multicast routing and
+unicast tunneling support. It continues the original [`knx`](https://github.com/ekarak/knx)
+project under a new package name, with Node.js 22 or later as its supported runtime.
+
+## Features
+
+- KNXnet/IP routing over UDP multicast
+- KNXnet/IP tunneling over UDP unicast
+- Resilient connection handling and automatic reconnection
+- Datapoint encoding and decoding for a broad set of DPTs
+- Higher-level datapoint and device abstractions
+- CommonJS API with bundled TypeScript declarations
+
+KNXnet/IP Secure is not currently supported.
+
+## Requirements
+
+- Node.js 22 or later
+- A KNXnet/IP router or interface
 
 ## Installation
 
-Make sure your machine has Node.JS (version 22 or greater) and do:
+```sh
+npm install knx-connect
+```
 
-`npm install knx`
-
-## Usage
-
-At last, here's a **reliable** KNX connection that simply works without any configs. To get a basic KNX monitor, you just need to run this in Node:
+## Quick start
 
 ```js
-var knx = require('knx');
-var connection = knx.Connection({
- handlers: {
-  connected: function() {
-    console.log('Connected!');
-  },
-  event: function (evt, src, dest, value) {
-  console.log("%s **** KNX EVENT: %j, src: %j, dest: %j, value: %j",
-    new Date().toISOString().replace(/T/, ' ').replace(/\..+/, ''),
-    evt, src, dest, value);
+const knx = require('knx-connect');
+
+const connection = knx.Connection({
+  handlers: {
+    connected: function () {
+      console.log('Connected to KNX');
+    },
+    event: function (event, source, destination, value) {
+      console.log(
+        '%s KNX EVENT: %j, src: %j, dest: %j, value: %j',
+        new Date().toISOString(),
+        event,
+        source,
+        destination,
+        value
+      );
+    },
+    error: function (error) {
+      console.error('KNX connection error:', error);
+    }
   }
- }
 });
 ```
 
-Ahhh, KNX telegrams, what a joy:
+Without an explicit `ipAddr`, the connection uses KNXnet/IP routing with the
+default multicast address. Provide the address of a KNXnet/IP interface to use
+tunneling. See the [API guide](README-API.md) for all connection options.
 
+## Migrating from `knx` 2.x
+
+Version 3.0 is published as a new npm package. Existing applications must replace
+the dependency and update their import:
+
+```diff
+- const knx = require('knx');
++ const knx = require('knx-connect');
 ```
-> 2016-09-24 05:34:07 **** KNX EVENT: "GroupValue_Write", src: "1.1.100", dest: "5/0/8", value: 1
-2016-09-24 05:34:09 **** KNX EVENT: "GroupValue_Write", src: "1.1.100", dest: "5/1/15", value: 0
-2016-09-24 05:34:09 **** KNX EVENT: "GroupValue_Write", src: "1.1.100", dest: "5/0/8", value: 0
-2016-09-24 05:34:17 **** KNX EVENT: "GroupValue_Write", src: "1.1.100", dest: "5/1/15", value: 0
-2016-09-24 05:34:17 **** KNX EVENT: "GroupValue_Write", src: "1.1.100", dest: "5/0/8", value: 1
+
+The public API remains compatible. See the complete
+[migration guide](MIGRATION.md), including an npm alias option for staged
+migrations.
+
+## Documentation
+
+- [API and connection options](README-API.md)
+- [Supported datapoint types](README-datapoints.md)
+- [Events](README-events.md)
+- [Connection resilience](README-resilience.md)
+- [eibd/knxd compatibility](README-knxd.md)
+- [Migrating from `knx` 2.x](MIGRATION.md)
+- [TypeScript example](typescript-sample/README.md)
+
+## Development
+
+Install dependencies and run lint:
+
+```sh
+npm ci
+npm run lint
 ```
 
-## Development documentation
+The offline protocol, datapoint and DPT tests can be run without KNX hardware:
 
-- [Basic API usage](../master/README-API.md)
-- [List of supported datapoints](../master/README-datapoints.md)
-- [List of supported events](../master/README-events.md)
-- [eibd/knxd compatibility](../master/README-knxd.md)
-- [On resilience](../master/README-resilience.md)
+```sh
+./node_modules/.bin/multi-tape test/dptlib/test-*.js test/knxproto/test-*.js test/datapoint/test-*.js
+```
 
+`npm test` also includes connection tests. Tests under `test/wiredtests` require a
+real KNX installation and only run when `WIREDTEST` is set. They are configured
+through local environment variables. Use [`.env.example`](.env.example) as the
+starting point and do not commit site-specific addresses or credentials.
 
 ## Roadmap
 
-- Fix linting issues and add linting to CI
-- Remove tape and multi-tape and replace with native Node.js test runner
+- Replace Tape and multi-tape with the native Node.js test runner
 - Add JSDoc documentation and generate API docs
 - Add support for KNX secure communication (KNXnet/IP Secure)
 - Remove dependency / keep them to a minimum
 
-Feel free to contribute, fork and submit pull requests. If you have any questions, please open an issue on GitHub.
+
+Contributions and bug reports are welcome in the
+[GitHub issue tracker](https://github.com/ch-zacmo/knx-connect/issues).
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-It is a fork of the original [knx](https://github.com/ekarak/knx) protocol stack, which is also licensed under the MIT License.
+`knx-connect` is licensed under the [MIT License](LICENSE).
 
-Thanks to [@ekarak](https://github.com/ekarak) for his work.
+This project is a maintained fork of the original
+[`knx`](https://github.com/ekarak/knx) protocol stack. The original work and
+copyright notices are retained; thanks to
+[@ekarak](https://github.com/ekarak) and all contributors.
+
+KNX is a registered trademark of KNX Association. This independent open-source
+project is not affiliated with or endorsed by KNX Association.

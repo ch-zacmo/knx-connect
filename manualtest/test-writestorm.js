@@ -1,9 +1,9 @@
 /**
-* knx.js - a KNX protocol stack in pure Javascript
+* knx-connect - a KNX protocol stack in pure JavaScript
 * (C) 2016-2017 Elias Karakoulakis
 */
 Error.stackTraceLimit = Infinity;
-var knx = require('knx');
+var knx = require('knx-connect');
 
 if (process.argv.length < 2) {
   console.log('usage: %s <0/1> (off/on) to write to a set of binary switches', process.argv[1]);

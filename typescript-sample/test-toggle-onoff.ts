@@ -1,9 +1,9 @@
 /**
-* knx.js - a KNX protocol stack in pure Javascript
+* knx-connect - a KNX protocol stack in pure JavaScript
 * (C) 2016-2017 Elias Karakoulakis
 */
 
-import * as knx from 'knx'
+import * as knx from 'knx-connect'
 
 var groupAddress = process.argv[2]
 

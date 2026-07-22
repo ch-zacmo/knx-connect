@@ -1,9 +1,9 @@
 /**
-* knx.js - a KNX protocol stack in pure Javascript
+* knx-connect - a KNX protocol stack in pure JavaScript
 * (C) 2016-2017 Elias Karakoulakis
 */
 
-var knx = require('knx');
+var knx = require('knx-connect');
 
 if (process.argv.length < 3) {
 	console.log('usage: %s <ga> <optional: status_ga> to toggle a light on & off',
