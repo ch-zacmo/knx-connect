@@ -4,3 +4,6 @@ bitbucket-pipelines.yml
 README*.md
 typescript-sample
 run-wired-tests.sh
+.env
+.github
+eslint.config.js
