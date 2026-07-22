@@ -1,9 +1,13 @@
+# knx-connect API guide
+
 ## Connect to your KNX IP router
 
 By default *you only need to specify a 'handlers' object* containing your functions to handle KNX events. All the other options have defaults that can be overridden according to your needs.
 
 
 ```js
+const knx = require('knx-connect');
+
 var connection = new knx.Connection( {
   // ip address and port of the KNX router or interface
   ipAddr: '127.0.0.1', ipPort: 3671,
