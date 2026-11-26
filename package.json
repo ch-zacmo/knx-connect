@@ -99,18 +99,17 @@
     "tunneling"
   ],
   "dependencies": {
-    "@types/node": "^26.1.1",
-    "binary-parser": "^2.3.0",
+    "@types/node": "^26.6.11",
+    "binary-parser": "^2.3.1",
     "binary-protocol": "0.0.0",
-    "ipaddr.js": "^2.4.0",
+    "ipaddr.js": "^2.5.0",
     "log-driver": "1.2.7",
     "machina": "^4.0.2"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
-    "eslint": "^10.7.0",
+    "eslint": "^10.15.0",
     "multi-tape": "^1.17.1",
     "tape": "^4.17.0"
   }
 }
-
